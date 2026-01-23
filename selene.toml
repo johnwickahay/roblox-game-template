@@ -1,0 +1,30 @@
+# Selene - Lua/Luau linter
+# https://kampfkarren.github.io/selene/
+
+std = "roblox"
+
+[lints]
+# Deny dangerous patterns
+undefined_variable = "deny"
+shadowing = "warn"
+
+# Code quality
+unused_variable = "warn"
+empty_if = "warn"
+empty_loop = "warn"
+almost_swapped = "warn"
+duplicate_keys = "deny"
+unbalanced_assignments = "warn"
+
+# Style
+compare_nan = "deny"
+deprecated = "warn"
+divide_by_zero = "warn"
+parenthese_conditions = "allow"
+
+# Roblox-specific
+roblox_incorrect_roact_usage = "warn"
+
+[config]
+# Empty loop bodies are sometimes intentional (busy waits)
+empty_loop = { comments_count = true }

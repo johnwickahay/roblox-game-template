@@ -1,0 +1,34 @@
+# Roblox build outputs
+*.rbxl
+*.rbxlx
+*.rbxm
+*.rbxmx
+
+# Wally packages
+Packages/
+wally.lock
+
+# Rojo sourcemaps
+sourcemap.json
+
+# Tool caches
+.aftman/
+.selene/
+
+# IDE/Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local environment
+.env
+.env.local

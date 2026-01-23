@@ -1,0 +1,64 @@
+{
+  "name": "RobloxGameTemplate",
+  "tree": {
+    "$className": "DataModel",
+
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+      "Shared": {
+        "$path": "src/shared/ReplicatedStorage/Shared"
+      }
+    },
+
+    "ServerScriptService": {
+      "$className": "ServerScriptService",
+      "$path": "src/server/ServerScriptService"
+    },
+
+    "StarterPlayer": {
+      "$className": "StarterPlayer",
+      "StarterPlayerScripts": {
+        "$className": "StarterPlayerScripts",
+        "$path": "src/client/StarterPlayerScripts"
+      }
+    },
+
+    "StarterGui": {
+      "$className": "StarterGui",
+      "$path": "src/client/StarterGui"
+    },
+
+    "Workspace": {
+      "$className": "Workspace",
+      "$properties": {
+        "FilteringEnabled": true
+      },
+      "SpawnLocation": {
+        "$className": "SpawnLocation",
+        "$properties": {
+          "Anchored": true,
+          "Size": [6, 1, 6],
+          "Position": [0, 0.5, 0],
+          "Neutral": true
+        }
+      }
+    },
+
+    "Lighting": {
+      "$className": "Lighting",
+      "$properties": {
+        "Ambient": [0.5, 0.5, 0.5],
+        "Brightness": 2,
+        "ClockTime": 14,
+        "GlobalShadows": true
+      }
+    },
+
+    "SoundService": {
+      "$className": "SoundService",
+      "$properties": {
+        "RespectFilteringEnabled": true
+      }
+    }
+  }
+}

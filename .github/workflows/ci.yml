@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-build:
+    name: Lint, Format & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Aftman
+        uses: ok-nick/setup-aftman@v0.4.2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Selene (Linter)
+        run: selene game/src/
+
+      - name: Check StyLua (Formatting)
+        run: stylua --check game/src/
+
+      - name: Validate Rojo Project JSON
+        run: |
+          echo "Validating game/default.project.json..."
+          python3 -c "import json; json.load(open('game/default.project.json'))"
+          echo "JSON is valid!"
+
+      - name: Build with Rojo
+        run: |
+          rojo build game/ -o build.rbxl
+          echo "Build successful!"
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: game-build
+          path: build.rbxl
+          retention-days: 7
