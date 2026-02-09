@@ -10,40 +10,28 @@ local Types = {}
 
 -- Remote event names (use these constants instead of strings)
 Types.Remotes = {
-	Ping = "Ping",
+	StartRound = "StartRound",
+	CollectStar = "CollectStar",
+	RoundUpdate = "RoundUpdate",
 	-- Add more remote names here:
 	-- PlayerData = "PlayerData",
 	-- GameState = "GameState",
 }
 
 -- Game states
-export type GameState = "Loading" | "Lobby" | "Playing" | "Ended"
+export type GameState = "Idle" | "Playing" | "Ended"
 
 Types.GameState = {
-	Loading = "Loading" :: GameState,
-	Lobby = "Lobby" :: GameState,
+	Idle = "Idle" :: GameState,
 	Playing = "Playing" :: GameState,
 	Ended = "Ended" :: GameState,
 }
 
--- Player data structure (example)
-export type PlayerData = {
-	coins: number,
-	level: number,
-	joinDate: number,
-}
-
-Types.DefaultPlayerData: PlayerData = {
-	coins = 0,
-	level = 1,
-	joinDate = 0,
-}
-
--- Ping response structure
-export type PingResponse = {
-	timestamp: number,
+export type RoundUpdate = {
+	state: GameState,
+	timeLeft: number,
+	score: number,
 	message: string,
-	serverTime: number,
 }
 
 return Types

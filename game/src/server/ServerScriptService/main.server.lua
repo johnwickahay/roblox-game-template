@@ -18,7 +18,7 @@ local Remotes = require(Shared:WaitForChild("Remotes"))
 
 -- Services
 local Services = ServerScriptService:WaitForChild("services")
-local PingService = require(Services:WaitForChild("ping_service"))
+local RoundService = require(Services:WaitForChild("round_service"))
 
 -- Boot banner
 print("========================================")
@@ -34,10 +34,10 @@ print("[Server] Remotes initialized")
 
 -- Initialize services
 local function initializeServices()
-	-- Start PingService
-	if Config.features.pingSystem then
-		PingService.init(remotes)
-		print("[Server] PingService started")
+	-- Start RoundService
+	if Config.features.roundSystem then
+		RoundService.init(remotes)
+		print("[Server] RoundService started")
 	end
 
 	-- Add more service initializations here:

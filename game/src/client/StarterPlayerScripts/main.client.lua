@@ -41,47 +41,30 @@ local UI = require(StarterGui:WaitForChild("ui"))
 
 print("[Client] UI module loaded")
 
--- Track pending ping for latency calculation
-local pendingPingTimestamp: number? = nil
-
--- Handle ping response from server
-local function onPingResponse(response: Types.PingResponse)
-	local roundTripTime = 0
-
-	if pendingPingTimestamp then
-		roundTripTime = (os.clock() - pendingPingTimestamp) * 1000 -- Convert to ms
-		pendingPingTimestamp = nil
-	end
-
-	local statusText = response.message
-	if Config.debug then
-		statusText = `{response.message} (RTT: {math.floor(roundTripTime)}ms)`
-	end
-
-	UI.setStatus(statusText)
+local function onRoundUpdate(update: Types.RoundUpdate)
+	UI.setStatus(update.message)
+	UI.setScore(update.score)
+	UI.setTimer(update.timeLeft)
+	UI.setState(update.state)
 
 	if Config.debug then
-		print(`[Client] Ping response: {response.message}`)
-		print(`[Client] Round-trip time: {math.floor(roundTripTime)}ms`)
+		print(`[Client] Round update: {update.state} | Score: {update.score} | Time: {update.timeLeft}s`)
 	end
 end
 
--- Send ping to server
-local function sendPing()
-	pendingPingTimestamp = os.clock()
-	UI.setStatus("Pinging server...")
-	remotes.Ping:FireServer(pendingPingTimestamp)
-
-	if Config.debug then
-		print("[Client] Ping sent to server")
-	end
+local function requestStart()
+	UI.setStatus("Starting round...")
+	remotes.StartRound:FireServer()
 end
 
--- Connect UI events
-UI.onPingClicked(sendPing)
+local function collectStar()
+	remotes.CollectStar:FireServer()
+end
 
--- Connect to server response
-remotes.Ping.OnClientEvent:Connect(onPingResponse)
+UI.onStartClicked(requestStart)
+UI.onCollectClicked(collectStar)
+
+remotes.RoundUpdate.OnClientEvent:Connect(onRoundUpdate)
 
 print("[Client] Initialization complete!")
-print("[Client] Click the 'Ping Server' button to test connectivity")
+print("[Client] Tap Start to begin a round.")
