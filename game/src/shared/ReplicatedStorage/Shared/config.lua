@@ -18,16 +18,17 @@ export type Config = {
 
 local Config: Config = {
 	-- Game identity
-	gameName = "Roblox Game Template",
-	version = "0.1.0",
-	buildDate = "2025-01-22",
+	gameName = "Starburst Clicker",
+	version = "1.0.0",
+	buildDate = "2025-02-10",
 
 	-- Debug mode: enables verbose logging and dev tools
 	debug = true,
 
 	-- Feature flags: toggle features without code changes
 	features = {
-		pingSystem = true,
+		roundSystem = true,
+		scoreClicks = true,
 		-- Add your feature flags here:
 		-- analytics = false,
 		-- matchmaking = false,

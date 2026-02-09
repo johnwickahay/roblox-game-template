@@ -12,7 +12,9 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Types = require(script.Parent.Types)
 
 export type Remotes = {
-	Ping: RemoteEvent,
+	StartRound: RemoteEvent,
+	CollectStar: RemoteEvent,
+	RoundUpdate: RemoteEvent,
 	-- Add more remote types here
 }
 
@@ -23,7 +25,9 @@ local FOLDER_NAME = "Remotes"
 
 -- List of remotes to create
 local REMOTE_EVENTS = {
-	Types.Remotes.Ping,
+	Types.Remotes.StartRound,
+	Types.Remotes.CollectStar,
+	Types.Remotes.RoundUpdate,
 	-- Add more remote names here
 }
 
